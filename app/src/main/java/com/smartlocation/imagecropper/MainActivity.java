@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        File dir = new File(this.getFilesDir(), storageDir);
+        File dir = new File(this.getExternalCacheDir().getAbsolutePath(), storageDir);
         if (!dir.exists()) {
             boolean result = dir.mkdir();
             Log.v("MainActivity", String.valueOf(result));
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("AAAAA", encodedImage);
                     imageView.setImageBitmap(decodeImage(encodedImage));
 
-                    File imageFile = Paths.get(this.getFilesDir().getAbsolutePath(), storageDir, "croppedImg.png").toFile();
+                    File imageFile = Paths.get(this.getExternalCacheDir().getAbsolutePath(), storageDir, "croppedImg.png").toFile();
                     try (FileOutputStream out = new FileOutputStream(imageFile)) {
                         selectedImage.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
                         // PNG is a lossless format, the compression factor (100) is ignored
